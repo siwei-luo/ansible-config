@@ -21,12 +21,12 @@
     mode: "0440"
     remote_src: yes
   loop:
-    /tmp/secureboot/db.crt
-    /tmp/secureboot/db.key
-    /tmp/secureboot/KEK.crt
-    /tmp/secureboot/KEK.key
-    /tmp/secureboot/PK.crt
-    /tmp/secureboot/PK.key
+    - /tmp/secureboot/db.crt
+    - /tmp/secureboot/db.key
+    - /tmp/secureboot/KEK.crt
+    - /tmp/secureboot/KEK.key
+    - /tmp/secureboot/PK.crt
+    - /tmp/secureboot/PK.key
 
 - name: Import /etc/keys/secureboot
   ansible.builtin.shell:
@@ -44,6 +44,7 @@
     cmd: >-
       sbctl sign -s /boot/EFI/BOOT/BOOTX64.EFI
       sbctl sign -s /boot/EFI/systemd/systemd-bootx64.efi
+      sbctl sign -s -o /usr/lib/fwupd/efi/fwupdx64.efi.signed /usr/lib/fwupd/efi/fwupdx64.efi
 
 - name: Verify /etc/keys/secureboot
   ansible.builtin.shell:
