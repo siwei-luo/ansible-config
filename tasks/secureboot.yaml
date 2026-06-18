@@ -11,3 +11,40 @@
     owner: root
     group: root
     mode: "0750"
+
+- name: Copy /etc/keys/secureboot
+  ansible.builtin.copy:
+    src: "{{ item }}"
+    dest: "/etc/keys/secureboot/{{ item | basename }}"
+    owner: root
+    group: root
+    mode: "0440"
+    remote_src: yes
+  loop:
+    /tmp/secureboot/db.crt
+    /tmp/secureboot/db.key
+    /tmp/secureboot/KEK.crt
+    /tmp/secureboot/KEK.key
+    /tmp/secureboot/PK.crt
+    /tmp/secureboot/PK.key
+
+- name: Import /etc/keys/secureboot
+  ansible.builtin.shell:
+    cmd: >-
+      sbctl import-keys
+      --db-cert /etc/keys/secureboot/db.crt
+      --db-key /etc/keys/secureboot/db.key
+      --kek-cert /etc/keys/secureboot/KEK.crt
+      --kek-key /etc/keys/secureboot/KEK.key
+      --pk-cert /etc/keys/secureboot/PK.crt
+      --pk-key /etc/keys/secureboot/PK.key
+
+- name: Sign /boot
+  ansible.builtin.shell:
+    cmd: >-
+      sbctl sign -s /boot/EFI/BOOT/BOOTX64.EFI
+      sbctl sign -s /boot/EFI/systemd/systemd-bootx64.efi
+
+- name: Verify /etc/keys/secureboot
+  ansible.builtin.shell:
+    cmd: sbctl verify
