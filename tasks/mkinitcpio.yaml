@@ -33,3 +33,8 @@
     group: root
     mode: "0644"
   notify: Run mkinitcpio
+
+- name: Show Kernel cmdline rd.luks.name
+  ansible.builtin.debug:
+    msg: "rd.luks.name={{ ansible_facts.devices[luks_device].partitions[luks_partition].uuid }}=root"
+  when: luks == True

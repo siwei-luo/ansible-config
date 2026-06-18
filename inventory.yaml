@@ -5,14 +5,14 @@ laptops:
       ansible_connection: local
       hostname: aurora
       localtime: Europe/Berlin
+      luks: true
+      luks_device: nvme0n1
+      luks_partition: nvme0n1p2
       mkinitcpio_modules: >-
         i915 intel_lpss_pci thunderbolt usbhid xhci_pci
       mkinitcpio_hooks: >-
         base systemd keyboard sd-vconsole plymouth autodetect microcode modconf kms block sd-encrypt filesystems fsck
       mkinitcpio_kernel_cmdline: >-
-        rd.luks.name=5fd18518-dced-4392-9376-a0881095710a=root
-        rd.luks.options=discard
-        root=/dev/mapper/root
         nowatchdog
         rw
         splash

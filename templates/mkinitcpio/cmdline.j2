@@ -1,1 +1,1 @@
-{{ mkinitcpio_kernel_cmdline }}
+{% if luks %}rd.luks.name={{ ansible_facts.devices[luks_device].partitions[luks_partition].uuid }}=root rd.luks.options=discard root=/dev/mapper/root {% endif %}{{ mkinitcpio_kernel_cmdline }}
