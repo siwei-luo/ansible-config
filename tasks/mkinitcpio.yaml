@@ -7,3 +7,29 @@
     group: root
     mode: "0644"
   notify: Run mkinitcpio
+
+- name: Configure /etc/mkinitcpio.d
+  ansible.builtin.file:
+    path: /etc/mkinitcpio.d
+    state: directory
+    owner: root
+    group: root
+    mode: "0755"
+
+- name: Configure /etc/mkinitcpio.d/linux.preset
+  ansible.builtin.template:
+    src: "{{ playbook_dir }}/templates/mkinitcpio/linux.preset.j2"
+    dest: /etc/mkinitcpio.d/linux.preset
+    owner: root
+    group: root
+    mode: "0644"
+  notify: Run mkinitcpio
+
+- name: Configure /etc/kernel/cmdline
+  ansible.builtin.template:
+    src: "{{ playbook_dir }}/templates/mkinitcpio/cmdline.j2"
+    dest: /etc/kernel/cmdline
+    owner: root
+    group: root
+    mode: "0644"
+  notify: Run mkinitcpio

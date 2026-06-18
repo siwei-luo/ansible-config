@@ -9,3 +9,16 @@ laptops:
         i915 intel_lpss_pci thunderbolt usbhid xhci_pci
       mkinitcpio_hooks: >-
         base systemd keyboard sd-vconsole plymouth autodetect microcode modconf kms block sd-encrypt filesystems fsck
+      mkinitcpio_kernel_cmdline: >-
+        rd.luks.name=5fd18518-dced-4392-9376-a0881095710a=root
+        rd.luks.options=discard
+        root=/dev/mapper/root
+        nowatchdog
+        rw
+        splash
+        quiet
+        intel_iommu=on
+        loglevel=3
+        systemd.show_status=auto
+        rd.udev.log_level=3
+        lockdown=integrity
