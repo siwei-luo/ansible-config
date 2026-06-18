@@ -44,6 +44,10 @@
       ansible.builtin.include_tasks:
         file: "{{ playbook_dir }}/tasks/thermald.yaml"
 
+    - name: Configure fwupd
+      ansible.builtin.include_tasks:
+        file: "{{ playbook_dir }}/tasks/fwupd.yaml"
+
   handlers:
 
     - name: Reload systemd
