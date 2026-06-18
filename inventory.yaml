@@ -5,3 +5,7 @@ laptops:
       ansible_connection: local
       hostname: aurora
       localtime: Europe/Berlin
+      mkinitcpio_modules: >-
+        i915 intel_lpss_pci thunderbolt usbhid xhci_pci
+      mkinitcpio_hooks: >-
+        base systemd keyboard sd-vconsole plymouth autodetect microcode modconf kms block sd-encrypt filesystems fsck

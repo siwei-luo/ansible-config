@@ -3,6 +3,7 @@
 - name: Chroot
   hosts: laptops
   tasks:
+
     - name: Update Pacman Cache
       community.general.pacman:
         update_cache: true
@@ -10,6 +11,10 @@
     - name: Configure baseline
       ansible.builtin.include_tasks:
         file: "{{ playbook_dir }}/tasks/pacman.yaml"
+
+    - name: Configure mkinitcpio
+      ansible.builtin.include_tasks:
+        file: "{{ playbook_dir }}/tasks/mkinitcpio.yaml"
 
     - name: Configure pacman
       ansible.builtin.include_tasks:
@@ -40,6 +45,11 @@
         file: "{{ playbook_dir }}/tasks/thermald.yaml"
 
   handlers:
+
     - name: Reload systemd
       ansible.builtin.systemd:
         daemon_reload: true
+
+    - name: Run mkinitcpio
+      ansible.builtin.shell:
+        cmd: mkinitcpio -p linux
