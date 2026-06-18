@@ -22,23 +22,27 @@
       - loupe
       - nautilus
       - papers
+      - quodlibet
+      - seahorse
+      - shotwell
       - simple-scan
       - snapshot
+      - sound-juicer
+      - soundconverter
       - xdg-desktop-portal-gnome
       - xdg-user-dirs-gtk
-      - networkmanager
-      - bluez
-      - fwupd
     state: present
 
 - name: Install GNOME Optionals
   community.general.pacman:
     name:
+      - gst-libav
+      - gst-plugins-bad
+      - gst-plugins-ulgy
       - gvfs-afc
       - gvfs-mtp
       - gvfs-nfs
       - gvfs-smb
-      - bluez-utils
     state: present
     reason: dependency
 
