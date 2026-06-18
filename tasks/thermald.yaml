@@ -13,7 +13,7 @@
     mode: "0755"
   when: >-
     (thermald_systemd_service_overwrite is defined) and
-    (thermald_systemd_service_overwrite|length > 0)
+    (thermald_systemd_service_overwrite | length > 0)
 
 - name: Configure /etc/systemd/system/thermald.service.d/overwrite.conf
   ansible.builtin.copy:
@@ -25,7 +25,7 @@
   notify: Reload systemd
   when: >-
     (thermald_systemd_service_overwrite is defined) and
-    (thermald_systemd_service_overwrite|length > 0)
+    (thermald_systemd_service_overwrite | length > 0)
 
 - name: Enable thermald
   ansible.builtin.systemd:
