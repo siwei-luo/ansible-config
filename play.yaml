@@ -1,0 +1,45 @@
+# This playbook is intended in the chroot during initial installation.
+---
+- name: Chroot
+  hosts: laptops
+  tasks:
+    - name: Update Pacman Cache
+      community.general.pacman:
+        update_cache: true
+
+    - name: Configure baseline
+      ansible.builtin.include_tasks:
+        file: "{{ playbook_dir }}/tasks/pacman.yaml"
+
+    - name: Configure pacman
+      ansible.builtin.include_tasks:
+        file: "{{ playbook_dir }}/tasks/pacman.yaml"
+
+    - name: Configure systemd
+      ansible.builtin.include_tasks:
+        file: "{{ playbook_dir }}/tasks/systemd.yaml"
+
+    - name: Configure /etc/skel/
+      ansible.builtin.include_tasks:
+        file: "{{ playbook_dir }}/tasks/skel.yaml"
+
+    - name: Configure Gnome
+      ansible.builtin.include_tasks:
+        file: "{{ playbook_dir }}/tasks/gnome.yaml"
+
+    - name: Configure BlueZ
+      ansible.builtin.include_tasks:
+        file: "{{ playbook_dir }}/tasks/bluez.yaml"
+
+    - name: Configure NetworkManager
+      ansible.builtin.include_tasks:
+        file: "{{ playbook_dir }}/tasks/networkmanager.yaml"
+
+    - name: Configure thermald
+      ansible.builtin.include_tasks:
+        file: "{{ playbook_dir }}/tasks/thermald.yaml"
+
+  handlers:
+    - name: Reload systemd
+      ansible.builtin.systemd:
+        daemon_reload: true
