@@ -1,0 +1,32 @@
+---
+- name: Install thermald
+  community.general.pacman:
+    name: thermald
+    state: present
+
+- name: Configure /etc/systemd/system/thermald.service.d
+  ansible.builtin.file:
+    path: /etc/systemd/system/thermald.service.d
+    state: directory
+    owner: root
+    group: root
+    mode: "0755"
+  when: >-
+    (thermald_systemd_service_overwrite is defined) and
+    (thermald_systemd_service_overwrite|length > 0)
+
+- name: Configure /etc/systemd/system/thermald.service.d/overwrite.conf
+  ansible.builtin.copy:
+    content: "{{ thermald_systemd_service_overwrite }}"
+    dest: /etc/systemd/system/thermald.service.d/overwrite.conf
+    owner: root
+    group: root
+    mode: "0644"
+  when: >-
+    (thermald_systemd_service_overwrite is defined) and
+    (thermald_systemd_service_overwrite|length > 0)
+
+- name: Enable thermald
+  ansible.builtin.systemd:
+    name: thermald.service
+    enabled: true

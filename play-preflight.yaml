@@ -1,0 +1,30 @@
+# This playbook is intended before chrooting into the installation.
+# * the chroot is expected to be already mounted in `/mnt`
+# * network connection already established
+# * Ansible installed
+---
+- name: Preflight
+  hosts: laptops
+  tasks:
+    - name: Update Pacman Cache
+      community.general.pacman:
+        update_cache: true
+
+    - name: Pacstrap /mnt
+      community.general.pacman:
+        name:
+          - ansible
+          - base
+          - base-devel
+          - linux
+          - linux-firmware
+          - intel-ucode
+          - man-db
+          - sof-firmware
+          - sbctl
+          - vim
+          - xfsprogs
+
+    - name: Generate /etc/fstab
+      ansible.builtin.shell:
+        cmd: genfstab -U /mnt >> /mnt/etc/fstab

@@ -1,0 +1,16 @@
+---
+- name: Install Bluez
+  community.general.pacman:
+    name: bluez
+    state: present
+
+- name: Install Bluez Optionals
+  community.general.pacman:
+    name: bluez-utils
+    state: present
+    reason: dependency
+
+- name: Enable Bluez
+  ansible.builtin.systemd:
+    name: bluetooth.service
+    enabled: true

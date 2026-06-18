@@ -1,0 +1,24 @@
+" syntax highlighting
+syntax on
+
+" middle mouse pasting
+set ttymouse=xterm2
+
+filetype plugin indent on
+
+" show existing tab with 4 spaces width
+set tabstop=4
+
+" when indenting with '>', use 4 spaces width
+set shiftwidth=4
+
+" On pressing tab, insert 4 spaces
+set expandtab
+
+" python handling
+au! BufNewFile,BufReadPost *.py set filetype=python
+autocmd FileType python setlocal ts=4 sts=4 sw=4 expandtab
+
+" yaml handling
+au! BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab

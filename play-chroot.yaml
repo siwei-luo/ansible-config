@@ -1,0 +1,80 @@
+# This playbook is intended in the chroot during initial installation.
+---
+- name: Chroot
+  hosts: laptops
+  tasks:
+    - name: Update Pacman Cache
+      community.general.pacman:
+        update_cache: true
+
+    - name: Configure /etc/localtime
+      ansible.builtin.file:
+        src: "/usr/share/zoneinfo/{{ localtime }}"
+        dest: /etc/localtime
+        owner: root
+        group: root
+        state: link
+
+    - name: Configure /etc/locale.gen
+      ansible.builtin.template:
+        src: "{{ playbook_dir }}/templates/locale.gen.j2"
+        dest: /etc/locale.gen
+        owner: root
+        group: root
+        mode: "0644"
+
+    - name: Generate Locales
+      ansible.builtin.command:
+        cmd: locale-gen
+
+    - name: Configure /etc/locale.conf
+      ansible.builtin.template:
+        src: "{{ playbook_dir }}/templates/locale.conf.j2"
+        dest: /etc/locale.conf
+        owner: root
+        group: root
+        mode: "0644"
+
+    - name: Configure /etc/vconsole.conf
+      ansible.builtin.template:
+        src: "{{ playbook_dir }}/templates/vconsole.conf.j2"
+        dest: /etc/vconsole.conf
+        owner: root
+        group: root
+        mode: "0644"
+
+    - name: Configure /etc/hostname
+      ansible.builtin.template:
+        src: "{{ playbook_dir }}/templates/hostname.j2"
+        dest: /etc/hostname
+        owner: root
+        group: root
+        mode: "0644"
+
+    - name: Configure pacman
+      ansible.builtin.include_tasks:
+        file: "{{ playbook_dir }}/tasks/pacman.yaml"
+
+    - name: Configure systemd
+      ansible.builtin.include_tasks:
+        file: "{{ playbook_dir }}/tasks/systemd.yaml"
+
+    - name: Configure /etc/skel/
+      ansible.builtin.include_tasks:
+        file: "{{ playbook_dir }}/tasks/skel.yaml"
+
+    - name: Configure Gnome
+      ansible.builtin.include_tasks:
+        file: "{{ playbook_dir }}/tasks/gnome.yaml"
+
+    - name: Configure BlueZ
+      ansible.builtin.include_tasks:
+        file: "{{ playbook_dir }}/tasks/bluez.yaml"
+
+    - name: Configure NetworkManager
+      ansible.builtin.include_tasks:
+        file: "{{ playbook_dir }}/tasks/networkmanager.yaml"
+
+    - name: Configure thermald
+      ansible.builtin.include_tasks:
+        file: "{{ playbook_dir }}/tasks/thermald.yaml"

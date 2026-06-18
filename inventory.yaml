@@ -1,0 +1,7 @@
+---
+laptops:
+  hosts:
+    aurora:
+      ansible_connection: local
+      hostname: aurora
+      localtime: Europe/Berlin

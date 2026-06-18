@@ -1,0 +1,16 @@
+---
+- name: Install NetworkManager
+  community.general.pacman:
+    name: networkmanager
+    state: present
+
+- name: Install NetworkManager Optionals
+  community.general.pacman:
+    name: modemmanager
+    state: present
+    reason: dependency
+
+- name: Enable NetworkManager
+  ansible.builtin.systemd:
+    name: NetworkManger.service
+    enabled: true

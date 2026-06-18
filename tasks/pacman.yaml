@@ -1,0 +1,40 @@
+---
+- name: Configure /etc/pacman.d/mirrorlist
+  ansible.builtin.template:
+    src: "{{ playbook_dir }}/templates/pacman/mirrorlist.j2"
+    dest: /etc/pacman.d/mirrorlist
+    owner: root
+    group: root
+    mode: "0644"
+
+- name: Configure /etc/pacman.d/hooks
+  ansible.builtin.file:
+    path: /etc/pacman.d/hooks
+    state: directory
+    owner: root
+    group: root
+    mode: "0755"
+
+- name: Configure /etc/pacman.d/hooks/50-pacman-mirrorlist.hook
+  ansible.builtin.template:
+    src: "{{ playbook_dir }}/templates/pacman/50-pacman-mirrorlist.hook.j2"
+    dest: /etc/pacman.d/hooks/50-pacman-mirrorlist.hook
+    owner: root
+    group: root
+    mode: "0644"
+
+- name: Configure /etc/pacman.d/hooks/50-pacman-orphan.hook
+  ansible.builtin.template:
+    src: "{{ playbook_dir }}/templates/pacman/50-pacman-orphan.hook.j2"
+    dest: /etc/pacman.d/hooks/50-pacman-orphan.hook
+    owner: root
+    group: root
+    mode: "0644"
+
+- name: Configure /etc/pacman.d/hooks/95-systemd-boot.hook
+  ansible.builtin.template:
+    src: "{{ playbook_dir }}/templates/pacman/95-systemd-boot.hook.j2"
+    dest: /etc/pacman.d/hooks/95-systemd-boot.hook
+    owner: root
+    group: root
+    mode: "0644"

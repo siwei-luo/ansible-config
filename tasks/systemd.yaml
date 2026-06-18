@@ -1,0 +1,101 @@
+---
+- name: Configure /etc/systemd/coredump.conf.d
+  ansible.builtin.file:
+    path: /etc/systemd/coredump.conf.d
+    state: directory
+    owner: root
+    group: root
+    mode: "0755"
+
+- name: Configure /etc/systemd/coredump.conf.d/overwrite.conf
+  ansible.builtin.template:
+    src: "{{ playbook_dir }}/templates/systemd/coredump.conf.j2"
+    dest: /etc/systemd/coredump.conf.d/overwrite.conf
+    owner: root
+    group: root
+    mode: "0644"
+
+- name: Configure /etc/systemd/journald.conf.d
+  ansible.builtin.file:
+    path: /etc/systemd/journald.conf.d
+    state: directory
+    owner: root
+    group: root
+    mode: "0755"
+
+- name: Configure /etc/systemd/journald.conf.d/overwrite.conf
+  ansible.builtin.template:
+    src: "{{ playbook_dir }}/templates/systemd/journald.conf.j2"
+    dest: /etc/systemd/journald.conf.d/overwrite.conf
+    owner: root
+    group: root
+    mode: "0644"
+
+- name: Configure /etc/systemd/logind.conf.d
+  ansible.builtin.file:
+    path: /etc/systemd/journald.conf.d
+    state: directory
+    owner: root
+    group: root
+    mode: "0755"
+
+- name: Configure /etc/systemd/logind.conf.d/overwrite.conf
+  ansible.builtin.template:
+    src: "{{ playbook_dir }}/templates/systemd/logind.conf.j2"
+    dest: /etc/systemd/logind.conf.d/overwrite.conf
+    owner: root
+    group: root
+    mode: "0644"
+
+- name: Configure /etc/systemd/resolved.conf.d
+  ansible.builtin.file:
+    path: /etc/systemd/resolved.conf.d
+    state: directory
+    owner: root
+    group: root
+    mode: "0755"
+
+- name: Configure /etc/systemd/resolved.conf.d/overwrite.conf
+  ansible.builtin.template:
+    src: "{{ playbook_dir }}/templates/systemd/resolved.conf.j2"
+    dest: /etc/systemd/resolved.conf.d/overwrite.conf
+    owner: root
+    group: root
+    mode: "0644"
+
+- name: Enable systemd-resolved.service
+  ansible.builtin.systemd:
+    name: systemd-resolved.service
+    enabled: true
+
+- name: Configure /etc/systemd/sleep.conf.d
+  ansible.builtin.file:
+    path: /etc/systemd/sleep.conf.d
+    state: directory
+    owner: root
+    group: root
+    mode: "0755"
+
+- name: Configure /etc/systemd/sleep.conf.d/overwrite.conf
+  ansible.builtin.template:
+    src: "{{ playbook_dir }}/templates/systemd/sleep.conf.j2"
+    dest: /etc/systemd/sleep.conf.d/overwrite.conf
+    owner: root
+    group: root
+    mode: "0644"
+
+- name: Configure /etc/systemd/system.conf.d
+  ansible.builtin.file:
+    path: /etc/systemd/system.conf.d
+    state: directory
+    owner: root
+    group: root
+    mode: "0755"
+
+- name: Configure /etc/systemd/system.conf.d/overwrite.conf
+  ansible.builtin.template:
+    src: "{{ playbook_dir }}/templates/systemd/system.conf.j2"
+    dest: /etc/systemd/system.conf.d/overwrite.conf
+    owner: root
+    group: root
+    mode: "0644"
