@@ -12,6 +12,10 @@
       ansible.builtin.include_tasks:
         file: "{{ playbook_dir }}/tasks/pacman.yaml"
 
+    - name: Configure fwupd
+      ansible.builtin.include_tasks:
+        file: "{{ playbook_dir }}/tasks/fwupd.yaml"
+
     - name: Configure Secure Boot
       ansible.builtin.include_tasks:
         file: "{{ playbook_dir }}/tasks/secureboot.yaml"
@@ -47,10 +51,6 @@
     - name: Configure thermald
       ansible.builtin.include_tasks:
         file: "{{ playbook_dir }}/tasks/thermald.yaml"
-
-    - name: Configure fwupd
-      ansible.builtin.include_tasks:
-        file: "{{ playbook_dir }}/tasks/fwupd.yaml"
 
   handlers:
 

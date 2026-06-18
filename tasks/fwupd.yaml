@@ -3,3 +3,11 @@
   community.general.pacman:
     name: fwupd
     state: present
+
+- name: Configure /etc/fwupd/fwupd.conf
+  ansible.builtin.template:
+    src: "{{ playbook_dir }}/templates/fwupd/fwupd.conf.j2"
+    dest: /etc/fwupd/fwupd.conf
+    owner: root
+    group: root
+    mode: "0644"
