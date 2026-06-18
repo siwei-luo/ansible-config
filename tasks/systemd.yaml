@@ -14,6 +14,7 @@
     owner: root
     group: root
     mode: "0644"
+  notify: Reload systemd
 
 - name: Configure /etc/systemd/journald.conf.d
   ansible.builtin.file:
@@ -30,6 +31,7 @@
     owner: root
     group: root
     mode: "0644"
+  notify: Reload systemd
 
 - name: Configure /etc/systemd/logind.conf.d
   ansible.builtin.file:
@@ -46,6 +48,7 @@
     owner: root
     group: root
     mode: "0644"
+  notify: Reload systemd
 
 - name: Configure /etc/systemd/resolved.conf.d
   ansible.builtin.file:
@@ -62,6 +65,7 @@
     owner: root
     group: root
     mode: "0644"
+  notify: Reload systemd
 
 - name: Enable systemd-resolved.service
   ansible.builtin.systemd:
@@ -83,6 +87,7 @@
     owner: root
     group: root
     mode: "0644"
+  notify: Reload systemd
 
 - name: Configure /etc/systemd/system.conf.d
   ansible.builtin.file:
@@ -99,3 +104,4 @@
     owner: root
     group: root
     mode: "0644"
+  notify: Reload systemd
