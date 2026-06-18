@@ -12,5 +12,10 @@
 
 - name: Enable NetworkManager
   ansible.builtin.systemd:
-    name: NetworkManger.service
+    name: NetworkManager.service
+    enabled: true
+
+- name: Enable ModemManager
+  ansible.builtin.systemd:
+    name: ModemManager.service
     enabled: true
