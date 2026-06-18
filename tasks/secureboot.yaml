@@ -1,0 +1,13 @@
+---
+- name: Install sbctl
+  community.general.pacman:
+    name: sbctl
+    state: present
+
+- name: Configure /etc/keys/secureboot
+  ansible.builtin.file:
+    path: /etc/keys/secureboot
+    state: directory
+    owner: root
+    group: root
+    mode: "0750"

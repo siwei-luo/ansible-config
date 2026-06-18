@@ -1,7 +1,7 @@
 # This playbook is intended before chrooting into the installation.
 # * the chroot is expected to be already mounted in `/mnt`
 # * network connection already established
-# * Ansible installed
+# * Ansible installed (pacman -S ansible)
 ---
 - name: Preflight
   hosts: laptops
@@ -21,7 +21,6 @@
           - intel-ucode
           - man-db
           - sof-firmware
-          - sbctl
           - vim
           - xfsprogs
 

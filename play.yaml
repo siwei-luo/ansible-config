@@ -12,6 +12,10 @@
       ansible.builtin.include_tasks:
         file: "{{ playbook_dir }}/tasks/pacman.yaml"
 
+    - name: Configure Secure Boot
+      ansible.builtin.include_tasks:
+        file: "{{ playbook_dir }}/tasks/secureboot.yaml"
+
     - name: Configure mkinitcpio
       ansible.builtin.include_tasks:
         file: "{{ playbook_dir }}/tasks/mkinitcpio.yaml"
