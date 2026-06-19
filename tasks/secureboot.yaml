@@ -14,20 +14,15 @@
 
 - name: Copy /etc/keys/secureboot
   ansible.builtin.copy:
-    src: "{{ item }}"
-    dest: "/etc/keys/secureboot/{{ item | basename }}"
+    content: "{{ item.value }}"
+    dest: "/etc/keys/secureboot/{{ item.name }}"
     owner: root
     group: root
     mode: "0440"
-    remote_src: yes
-  loop:
-    - /tmp/secureboot/db.crt
-    - /tmp/secureboot/db.key
-    - /tmp/secureboot/KEK.crt
-    - /tmp/secureboot/KEK.key
-    - /tmp/secureboot/PK.crt
-    - /tmp/secureboot/PK.key
+    checksum: "{{ item.sha1sum }}"
+  loop: "{{ secureboot_files }}"
   register: secureboot_keys
+  become: true
 
 - name: Import /etc/keys/secureboot
   ansible.builtin.shell:

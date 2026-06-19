@@ -50,11 +50,11 @@
   community.general.pacman:
     name:
       - calf
-      - gnome-shell-extension
+      - gnome-shell-extensions
       - gnome-shell-extension-dash-to-panel
       - gst-libav
       - gst-plugins-bad
-      - gst-plugins-ulgy
+      - gst-plugins-ugly
       - gvfs-afc
       - gvfs-mtp
       - gvfs-nfs
