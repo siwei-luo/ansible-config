@@ -8,8 +8,6 @@ laptops:
       luks: true
       luks_device: nvme0n1
       luks_partition: nvme0n1p2
-      mkinitcpio_modules: >-
-        i915 intel_lpss_pci thunderbolt usbhid xhci_pci
       mkinitcpio_hooks: >-
         base systemd keyboard sd-vconsole plymouth autodetect microcode modconf kms block sd-encrypt filesystems fsck
       mkinitcpio_kernel_cmdline: >-
@@ -22,3 +20,6 @@ laptops:
         systemd.show_status=auto
         rd.udev.log_level=3
         lockdown=integrity
+      mkinitcpio_modules: >-
+        i915 intel_lpss_pci thunderbolt usbhid xhci_pci
+      run_baseline: true

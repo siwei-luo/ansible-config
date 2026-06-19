@@ -1,4 +1,10 @@
 ---
+- name: Install intel-ucode
+  community.general.pacman:
+    name: intel-ucode
+    state: present
+  notify: Run mkinitcpio
+
 - name: Install thermald
   community.general.pacman:
     name: thermald
@@ -31,3 +37,18 @@
   ansible.builtin.systemd:
     name: thermald.service
     enabled: true
+
+- name: Install intel-lpmd
+  community.general.pacman:
+    name: intel-lpmd
+    state: present
+
+- name: Enable intel-lpmd
+  ansible.builtin.systemd:
+    name: intel_lpmd.service
+    enabled: true
+
+- name: Install intel-media-driver
+  community.general.pacman:
+    name: intel-media-driver
+    state: present

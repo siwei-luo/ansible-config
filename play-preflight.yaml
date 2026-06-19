@@ -6,9 +6,6 @@
 - name: Preflight
   hosts: laptops
   tasks:
-    - name: Update Pacman Cache
-      community.general.pacman:
-        update_cache: true
 
     - name: Pacstrap /mnt
       community.general.pacman:
@@ -18,11 +15,15 @@
           - base-devel
           - linux
           - linux-firmware
-          - intel-ucode
           - man-db
           - sof-firmware
+          - sudo
           - vim
           - xfsprogs
+        state: present
+        root: /mnt
+        cachedir: /mnt/var/cache/pacman/pkg
+        update_cache: true
 
     - name: Check /etc/fstab
       ansible.builtin.stat:

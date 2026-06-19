@@ -3,7 +3,14 @@
   community.general.pacman:
     name:
       - baobab
+      - cups
+      - easyeffects
+      - evolution
+      - file-roller
+      - firewalld
       - gdm
+      - ghostty
+      - gimp
       - gnome-backgrounds
       - gnome-calculator
       - gnome-clocks
@@ -16,12 +23,17 @@
       - gnome-shell
       - gnome-system-monitor
       - gnome-text-editor
+      - gnome-tweaks
       - gnome-user-docs
       - gnome-weather
       - gvfs
       - loupe
       - nautilus
       - papers
+      - pdfarranger
+      - pipewire
+      - plymouth
+      - power-profiles-daemon
       - quodlibet
       - seahorse
       - shotwell
@@ -29,6 +41,7 @@
       - snapshot
       - sound-juicer
       - soundconverter
+      - wireplumber
       - xdg-desktop-portal-gnome
       - xdg-user-dirs-gtk
     state: present
@@ -36,6 +49,9 @@
 - name: Install GNOME Optionals
   community.general.pacman:
     name:
+      - calf
+      - gnome-shell-extension
+      - gnome-shell-extension-dash-to-panel
       - gst-libav
       - gst-plugins-bad
       - gst-plugins-ulgy
@@ -43,6 +59,9 @@
       - gvfs-mtp
       - gvfs-nfs
       - gvfs-smb
+      - lsp-plugins-lv2
+      - mda.lv2
+      - zam-plugins-lv2
     state: present
     reason: dependency
 
@@ -50,3 +69,24 @@
   ansible.builtin.systemd:
     name: gdm.service
     enabled: true
+
+- name: Install Plymouth Themes
+  ansible.builtin.copy:
+    src: "{{ playbook_dir }}/templates/gnome/plymouth-themes/"
+    dest: /usr/share/plymouth/themes/
+    owner: root
+    group: root
+    mode: "0644"
+    directory_mode: "0755"
+
+- name: Configure Plymouth
+  ansible.builtin.copy:
+    content: |
+      # Administrator customizations go in this file
+      [Daemon]
+      Theme=arch-glow
+    dest: /etc/plymouth/plymouthd.conf
+    owner: root
+    group: root
+    mode: "0644"
+  notify: Run mkinitcpio

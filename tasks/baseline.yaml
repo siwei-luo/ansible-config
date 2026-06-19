@@ -56,3 +56,4 @@
   ansible.builtin.shell:
     cmd: bootctl install
   when: bootloader.stat.exists == False
+  notify: Reminder root password

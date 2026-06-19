@@ -4,11 +4,35 @@
     name: networkmanager
     state: present
 
-- name: Install NetworkManager Optionals
+- name: Install ModemManager
   community.general.pacman:
     name: modemmanager
     state: present
     reason: dependency
+
+- name: Install iwd
+  community.general.pacman:
+    name: iwd
+    state: present
+    reason: dependency
+
+- name: Configure /etc/NetworkManager/conf.d
+  ansible.builtin.file:
+    path: /etc/NetworkManager/conf.d
+    state: directory
+    owner: root
+    group: root
+    mode: "0755"
+
+- name: Configure /etc/NetworkManager/conf.d/wifi_backend.conf
+  ansible.builtin.copy:
+    content: |
+      [device]
+      wifi.backend=iwd
+    dest: /etc/NetworkManager/conf.d/wifi_backend.conf
+    owner: root
+    group: root
+    mode: "0644"
 
 - name: Enable NetworkManager
   ansible.builtin.systemd:

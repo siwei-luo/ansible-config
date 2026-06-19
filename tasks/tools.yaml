@@ -1,0 +1,13 @@
+---
+- name: Install Tools
+  community.general.pacman:
+    name:
+      - arch-audit
+      - bind
+      - gptfdisk
+      - ipcalc
+      - lshw
+      - powertop
+      - restic
+      - usbutils
+      - wol

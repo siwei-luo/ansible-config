@@ -11,6 +11,15 @@
     - name: Configure baseline
       ansible.builtin.include_tasks:
         file: "{{ playbook_dir }}/tasks/pacman.yaml"
+      when: run_baseline == True
+
+    - name: Configure Shell
+      ansible.builtin.include_tasks:
+        file: "{{ playbook_dir }}/tasks/shell.yaml"
+
+    - name: Configure Tools
+      ansible.builtin.include_tasks:
+        file: "{{ playbook_dir }}/tasks/tools.yaml"
 
     - name: Configure fwupd
       ansible.builtin.include_tasks:
@@ -36,9 +45,14 @@
       ansible.builtin.include_tasks:
         file: "{{ playbook_dir }}/tasks/skel.yaml"
 
-    - name: Configure Gnome
+    - name: Configure GNOME Desktop Environment
       ansible.builtin.include_tasks:
         file: "{{ playbook_dir }}/tasks/gnome.yaml"
+
+    - name: Configure Intel
+      ansible.builtin.include_tasks:
+        file: "{{ playbook_dir }}/tasks/intel.yaml"
+      when: "'Intel' in ansible_facts['processor'] | join(' ')"
 
     - name: Configure BlueZ
       ansible.builtin.include_tasks:
@@ -48,9 +62,6 @@
       ansible.builtin.include_tasks:
         file: "{{ playbook_dir }}/tasks/networkmanager.yaml"
 
-    - name: Configure thermald
-      ansible.builtin.include_tasks:
-        file: "{{ playbook_dir }}/tasks/thermald.yaml"
 
   handlers:
 
@@ -60,4 +71,8 @@
 
     - name: Run mkinitcpio
       ansible.builtin.shell:
-        cmd: mkinitcpio -p linux
+        cmd: mkinitcpio -P
+
+    - name: Reminder root password
+      ansible.builtin.debug:
+        msg: "REMINDER: Do not forget to set a root password!"

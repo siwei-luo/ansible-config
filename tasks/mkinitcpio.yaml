@@ -16,6 +16,7 @@
     group: root
     mode: "0755"
 
+# Use UKI instead of the default image.
 - name: Configure /etc/mkinitcpio.d/linux.preset
   ansible.builtin.template:
     src: "{{ playbook_dir }}/templates/mkinitcpio/linux.preset.j2"
