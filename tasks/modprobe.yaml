@@ -1,0 +1,16 @@
+---
+- name: Configure /etc/modprobe.d
+  ansible.builtin.file:
+    path: /etc/modprobe.d
+    state: directory
+    owner: root
+    group: root
+    mode: "0755"
+
+- name: Configure /etc/modprobe.d/blocklist.conf
+  ansible.builtin.template:
+    src: "{{ playbook_dir }}/templates/modprobe/blocklist.conf.j2"
+    dest: /etc/modprobe.d/blocklist.conf
+    owner: root
+    group: root
+    mode: "0644"

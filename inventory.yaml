@@ -25,6 +25,8 @@ laptops:
       run_baseline: true
       run_secureboot: true
   vars:
+    modprobe_blocklist:
+      - pcspkr
     secureboot_files:
       - name: db.crt
         sha1sum: e81d1900fc438338ea12ba8b02b1fcccbc03c90a
