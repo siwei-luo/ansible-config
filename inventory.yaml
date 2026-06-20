@@ -4,6 +4,7 @@ laptops:
     aurora:
       ansible_connection: local
       hostname: aurora
+      intel_use_xe: true
       localtime: Europe/Berlin
       luks: true
       luks_device: nvme0n1
@@ -25,6 +26,7 @@ laptops:
       run_baseline: true
       run_secureboot: true
   vars:
+    intel_use_xe: false
     modprobe_blocklist:
       - pcspkr
     secureboot_files:

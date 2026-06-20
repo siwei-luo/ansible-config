@@ -48,7 +48,34 @@
     name: intel_lpmd.service
     enabled: true
 
-- name: Install intel-media-driver
+- name: Install vpl-gpu-rt
   community.general.pacman:
-    name: intel-media-driver
+    name: vpl-gpu-rt
     state: present
+
+- name: Install vulkan-intel
+  community.general.pacman:
+    name: vulkan-intel
+    state: present
+
+- name: Extract GPU PCI ID
+  ansible.builtin.shell:
+    cmd: lspci -nnd ::03xx
+  register: intel_pci
+  changed_when: False
+  when: intel_use_xe | default(False)
+
+- name: Configure /etc/modprobe.d/intel.conf
+  ansible.builtin.template:
+    src: "{{ playbook_dir }}/templates/modprobe/intel.conf.j2"
+    dest: /etc/modprobe.d/intel.conf
+    owner: root
+    group: root
+    mode: "0644"
+  when: intel_use_xe
+  
+- name: Remove /etc/modprobe.d/intel.conf
+  ansible.builtin.file:
+    src: /etc/modprobe.d/intel.conf
+    state: absent
+  when: intel_use_xe == False

@@ -1,0 +1,2 @@
+options i915 force_probe=!{{ intel_gpu.stdout | regex_replace('^.*\\[[0-9a-fA-F]{4}:([0-9a-fA-F]{4})\\].*$', '\\1') }}
+options xe force_probe={{ intel_gpu.stdout | regex_replace('^.*\\[[0-9a-fA-F]{4}:([0-9a-fA-F]{4})\\].*$', '\\1') }}

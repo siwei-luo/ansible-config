@@ -12,6 +12,10 @@
         file: "{{ playbook_dir }}/tasks/pacman.yaml"
       when: run_baseline == True
 
+    - name: Configure modprobe
+      ansible.builtin.include_tasks:
+        file: "{{ playbook_dir }}/tasks/modprobe.yaml"
+
     - name: Configure Shell
       ansible.builtin.include_tasks:
         file: "{{ playbook_dir }}/tasks/shell.yaml"
