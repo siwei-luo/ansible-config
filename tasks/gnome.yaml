@@ -41,6 +41,16 @@
       - snapshot
       - sound-juicer
       - soundconverter
+      - vlc-plugin-dvd
+      - vlc-plugin-ffmpeg
+      - vlc-plugin-freetype
+      - vlc-plugin-gstreamer
+      - vlc-plugin-mad
+      - vlc-plugin-mdns
+      - vlc-plugin-mpeg2
+      - vlc-plugin-samplerate
+      - vlc-plugin-x264
+      - vlc-plugin-x265
       - wireplumber
       - xdg-desktop-portal-gnome
       - xdg-user-dirs-gtk
@@ -61,6 +71,7 @@
       - gvfs-smb
       - lsp-plugins-lv2
       - mda.lv2
+      -
       - zam-plugins-lv2
     state: present
     reason: dependency
