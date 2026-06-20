@@ -11,7 +11,7 @@
 
 - name: Configure /etc/locale.gen
   ansible.builtin.template:
-    src: "{{ playbook_dir }}/templates/locale.gen.j2"
+    src: "{{ playbook_dir }}/templates/baseline/locale.gen.j2"
     dest: /etc/locale.gen
     owner: root
     group: root
@@ -25,7 +25,7 @@
 
 - name: Configure /etc/locale.conf
   ansible.builtin.template:
-    src: "{{ playbook_dir }}/templates/locale.conf.j2"
+    src: "{{ playbook_dir }}/templates/baseline/locale.conf.j2"
     dest: /etc/locale.conf
     owner: root
     group: root
@@ -33,7 +33,7 @@
 
 - name: Configure /etc/vconsole.conf
   ansible.builtin.template:
-    src: "{{ playbook_dir }}/templates/vconsole.conf.j2"
+    src: "{{ playbook_dir }}/templates/baseline/vconsole.conf.j2"
     dest: /etc/vconsole.conf
     owner: root
     group: root
@@ -41,7 +41,7 @@
 
 - name: Configure /etc/hostname
   ansible.builtin.template:
-    src: "{{ playbook_dir }}/templates/hostname.j2"
+    src: "{{ playbook_dir }}/templates/baseline/hostname.j2"
     dest: /etc/hostname
     owner: root
     group: root
