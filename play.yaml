@@ -1,6 +1,7 @@
 ---
 - name: Rollout
   hosts: laptops
+  become: true
   tasks:
 
     - name: Update Pacman Cache

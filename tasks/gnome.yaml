@@ -29,6 +29,7 @@
       - gvfs
       - loupe
       - nautilus
+      - obsidian
       - papers
       - pdfarranger
       - pipewire
@@ -79,6 +80,11 @@
 - name: Enable GDM
   ansible.builtin.systemd:
     name: gdm.service
+    enabled: true
+
+- name: Enable power-profiles-daemon
+  ansible.builtin.systemd:
+    name: power-profiles-daemon.service
     enabled: true
 
 - name: Install Plymouth Themes
