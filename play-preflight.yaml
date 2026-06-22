@@ -29,9 +29,9 @@
       ansible.builtin.stat:
         path: /mnt/etc/fstab
         checksum_algorithm: sha256
-      register: fstab
+      register: _fstab
 
     - name: Generate /etc/fstab
       ansible.builtin.shell:
         cmd: genfstab -U /mnt >> /mnt/etc/fstab
-      when: fstab.stat.checksum == "e54626e74ed8fee4173b62a545ab1c3a3a069e4217a0ee8fc398d9933e9c1696"
+      when: _fstab.stat.checksum == "e54626e74ed8fee4173b62a545ab1c3a3a069e4217a0ee8fc398d9933e9c1696"

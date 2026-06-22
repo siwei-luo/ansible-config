@@ -1,0 +1,13 @@
+---
+# `true`
+baseline_execute: true
+
+gnome_theme_name: Colloid-Dark
+gnome_theme_force_latest: false
+
+secureboot_execute: false
+
+# `true` enables the experimental xe driver instead of i915
+intel_use_xe: false
+
+mkinitcpio_luks: false

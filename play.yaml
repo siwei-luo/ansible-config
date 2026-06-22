@@ -2,6 +2,8 @@
 - name: Rollout
   hosts: laptops
   become: true
+  vars_files:
+    - defaults.yaml
   tasks:
 
     - name: Update Pacman Cache
@@ -11,7 +13,7 @@
     - name: Configure baseline
       ansible.builtin.include_tasks:
         file: "{{ playbook_dir }}/tasks/pacman.yaml"
-      when: run_baseline == True
+      when: baseline_execute
 
     - name: Configure modprobe
       ansible.builtin.include_tasks:
@@ -32,7 +34,7 @@
     - name: Configure Secure Boot
       ansible.builtin.include_tasks:
         file: "{{ playbook_dir }}/tasks/secureboot.yaml"
-      when: run_secureboot | default(False)
+      when: secureboot_execute
 
     - name: Configure mkinitcpio
       ansible.builtin.include_tasks:

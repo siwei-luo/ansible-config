@@ -72,7 +72,7 @@
       - gvfs-smb
       - lsp-plugins-lv2
       - mda.lv2
-      -
+      - sassc
       - zam-plugins-lv2
     state: present
     reason: dependency
@@ -97,13 +97,85 @@
     directory_mode: "0755"
 
 - name: Configure Plymouth
-  ansible.builtin.copy:
-    content: |
-      # Administrator customizations go in this file
-      [Daemon]
-      Theme=arch-glow
+  ansible.builtin.template:
+    src: "{{ playbook_dir }}/templates/gnome/plymouthd.conf.j2"
     dest: /etc/plymouth/plymouthd.conf
     owner: root
     group: root
     mode: "0644"
   notify: Run mkinitcpio
+
+- name: Check Colloid-Theme
+  ansible.builtin.stat:
+    path: /usr/share/themes/Colloid-Dark
+  register: _gnome_theme_location
+
+- name: Install Colloid-Theme
+  block:
+
+    - name: Create temporary dir
+      ansible.builtin.tempfile:
+        state: directory
+      changed_when: false
+      register: _gnome_theme_tmp
+
+    - name: GNOME clone source
+      ansible.builtin.git:
+        repo: https://github.com/vinceliuice/Colloid-gtk-theme.git
+        dest: "{{ _gnome_theme_tmp.path }}"
+      changed_when: false
+
+    - name: Remove Colloid-Theme
+      ansible.builtin.shell:
+        chdir: "{{ _gnome_theme_tmp.path }}"
+        cmd: ./install.sh -r
+        executable: /usr/bin/bash
+      when: gnome_theme_force_latest
+
+    - name: Install Colloid-Theme
+      ansible.builtin.shell:
+        chdir: "{{ _gnome_theme_tmp.path }}"
+        cmd: >
+          ./install.sh
+          --tweaks rimless
+          --tweaks normal
+          --tweaks black
+          -s standard
+          -c dark
+          -d /usr/share/themes
+        executable: /usr/bin/bash
+
+  always:
+
+    - name: GNOME cleanup temporary dir
+      ansible.builtin.file:
+        path: "{{ _gnome_theme_tmp.path }}"
+        state: absent
+      changed_when: false
+
+  when: _gnome_theme_location.stat.isdir is not defined or gnome_theme_force_latest
+
+
+- name: Configure /etc/skel/.config/environment.d
+  ansible.builtin.file:
+    path: /etc/skel/.config/environment.d
+    state: directory
+    owner: root
+    group: root
+    mode: "0755"
+
+- name: Configure /etc/skel/.config/environment.d/gcr.conf
+  ansible.builtin.template:
+    src: "{{ playbook_dir }}/templates/gnome/gcr.conf.j2"
+    dest: /etc/skel/.config/environment.d/gcr.conf
+    owner: root
+    group: root
+    mode: "0644"
+
+- name: Configure /etc/skel/.config/environment.d/gtk.conf
+  ansible.builtin.template:
+    src: "{{ playbook_dir }}/templates/gnome/gtk.conf.j2"
+    dest: /etc/skel/.config/environment.d/gtk.conf
+    owner: root
+    group: root
+    mode: "0644"

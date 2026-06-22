@@ -61,9 +61,9 @@
 - name: Extract GPU PCI ID
   ansible.builtin.shell:
     cmd: lspci -nnd ::03xx
-  register: intel_pci
+  register: _intel_pci
   changed_when: False
-  when: intel_use_xe | default(False)
+  when: intel_use_xe
 
 - name: Configure /etc/modprobe.d/intel.conf
   ansible.builtin.template:
@@ -73,7 +73,7 @@
     group: root
     mode: "0644"
   when: intel_use_xe
-  
+
 - name: Remove /etc/modprobe.d/intel.conf
   ansible.builtin.file:
     src: /etc/modprobe.d/intel.conf

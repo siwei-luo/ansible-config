@@ -16,12 +16,12 @@
     owner: root
     group: root
     mode: "0644"
-  register: localegen
+  register: _localegen
 
 - name: Generate Locales
   ansible.builtin.shell:
     cmd: locale-gen
-  when: localegen.changed
+  when: _localegen.changed
 
 - name: Configure /etc/locale.conf
   ansible.builtin.template:
@@ -50,10 +50,10 @@
 - name: Check Bootloader
   ansible.builtin.stat:
     path: /boot/loader/random-seed
-  register: bootloader
+  register: _bootloader
 
 - name: Install Bootloader
   ansible.builtin.shell:
     cmd: bootctl install
-  when: bootloader.stat.exists == False
+  when: _bootloader.stat.exists == False
   notify: Reminder root password
