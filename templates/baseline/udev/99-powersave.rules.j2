@@ -1,0 +1,41 @@
+# PCI
+ACTION=="add", SUBSYSTEM=="pci", TEST=="power/control", ATTR{power/control}="auto"
+
+# USB
+ACTION=="add", SUBSYSTEM=="usb", TEST=="power/control", ATTR{power/control}="auto"
+
+# Exceptions
+
+# Anker 565 USB-C Hub
+ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="291a", ATTR{idProduct}=="8388", ATTR{power/control}="on"
+ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="2109", ATTR{idProduct}=="0822", ATTR{power/control}="on"
+ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="2109", ATTR{idProduct}=="2822", ATTR{power/control}="on"
+ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="14cd", ATTR{idProduct}=="8601", ATTR{power/control}="on"
+ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="0b95", ATTR{idProduct}=="1790", ATTR{power/control}="on"
+
+# Dell DA200
+ACTION=="add", SUBSYSTEM=="usb", ATTR{busnum}=="3", ATTR{idVendor}=="0835", ATTR{idProduct}=="2a01", ATTR{power/control}="on"
+ACTION=="add", SUBSYSTEM=="usb", ATTR{busnum}=="4", ATTR{idVendor}=="0bda", ATTR{idProduct}=="8153", ATTR{power/control}="on"
+ACTION=="add", SUBSYSTEM=="usb", ATTR{busnum}=="3", ATTR{idVendor}=="05e3", ATTR{idProduct}=="0610", ATTR{power/control}="on"
+ACTION=="add", SUBSYSTEM=="usb", ATTR{busnum}=="4", ATTR{idVendor}=="05e3", ATTR{idProduct}=="0617", ATTR{power/control}="on"
+ACTION=="add", SUBSYSTEM=="usb", ATTR{busnum}=="3", ATTR{idVendor}=="1d6b", ATTR{idProduct}=="0002", ATTR{power/control}="on"
+ACTION=="add", SUBSYSTEM=="usb", ATTR{busnum}=="4", ATTR{idVendor}=="1d6b", ATTR{idProduct}=="0003", ATTR{power/control}="on"
+
+# Keychron K1 Max
+ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="3434", ATTR{idProduct}=="0a10", ATTR{power/control}="on"
+
+# Keychron Link
+ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="3434", ATTR{idProduct}=="d030", ATTR{power/control}="on"
+
+# Lenovo TrackPoint
+ACTION=="add", SUBSYSTEM=="serio", ATTR{protocol}=="TPPS/2", ATTR{power/control}="on"
+
+# Logitech Bolt Receiver
+ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="046d", ATTR{idProduct}=="c548", ATTR{power/control}="on"
+
+# Logitech Unifying Receiver
+ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="046d", ATTR{idProduct}=="c52b", ATTR{power/control}="on"
+
+# NuPhy Gem80
+ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="19f5", ATTR{idProduct}=="3247", ATTR{power/control}="on"
+ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="19f5", ATTR{idProduct}=="3275", ATTR{power/control}="on"

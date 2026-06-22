@@ -48,10 +48,6 @@
       ansible.builtin.include_tasks:
         file: "{{ playbook_dir }}/tasks/systemd.yaml"
 
-    - name: Configure /etc/skel/
-      ansible.builtin.include_tasks:
-        file: "{{ playbook_dir }}/tasks/skel.yaml"
-
     - name: Configure GNOME Desktop Environment
       ansible.builtin.include_tasks:
         file: "{{ playbook_dir }}/tasks/gnome.yaml"
@@ -69,8 +65,11 @@
       ansible.builtin.include_tasks:
         file: "{{ playbook_dir }}/tasks/networkmanager.yaml"
 
-
   handlers:
+
+    - name: Reload udev
+      ansible.builtin.shell:
+        cmd: udevadm control --reload-rules
 
     - name: Reload systemd
       ansible.builtin.systemd:

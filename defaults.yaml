@@ -1,6 +1,6 @@
 ---
 # `true`
-baseline_execute: true
+baseline_execute: false
 
 gnome_theme_name: Colloid-Dark
 gnome_theme_force_latest: false

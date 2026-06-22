@@ -22,7 +22,7 @@ laptops:
         rd.udev.log_level=3
         lockdown=integrity
       mkinitcpio_modules: >-
-        i915 intel_lpss_pci thunderbolt usbhid xhci_pci
+        i915 intel_lpss_pci thunderbolt usbhid xe xhci_pci
       baseline_execute: true
 
   vars:

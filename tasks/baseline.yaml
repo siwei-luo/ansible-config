@@ -47,6 +47,14 @@
     group: root
     mode: "0644"
 
+- name: Configure /etc/hostname
+  ansible.builtin.template:
+    src: "{{ playbook_dir }}/templates/baseline/hostname.j2"
+    dest: /etc/hostname
+    owner: root
+    group: root
+    mode: "0644"
+
 - name: Check Bootloader
   ansible.builtin.stat:
     path: /boot/loader/random-seed
@@ -57,3 +65,29 @@
     cmd: bootctl install
   when: _bootloader.stat.exists == False
   notify: Reminder root password
+
+- name: Configure /etc/udev/rules.d
+  ansible.builtin.file:
+    path: /etc/udev/rules.d
+    state: directory
+    owner: root
+    group: root
+    mode: "0755"
+
+- name: Configure `/etc/udev/rules.d/*`
+  ansible.builtin.template:
+    src: "{{ item }}"
+    dest: "/etc/udev/rules.d/{{ item | basename | regex_replace('\\.j2', '') }}"
+    owner: root
+    group: root
+    mode: "0644"
+  loop: "{{ lookup('fileglob', playbook_dir + '/templates/rules.d/*.rules.j2', wantlist=True) }}"
+  notify: Reload udev
+
+- name: Configure /etc/skel/.vimrc
+  ansible.builtin.template:
+    src: "{{ playbook_dir }}/templates/baseline/vimrc.j2"
+    dest: /etc/skel/.vimrc
+    owner: root
+    group: root
+    mode: "0644"
