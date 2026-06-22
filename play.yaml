@@ -65,6 +65,10 @@
       ansible.builtin.include_tasks:
         file: "{{ playbook_dir }}/tasks/networkmanager.yaml"
 
+    - name: Configure udev
+      ansible.builtin.include_tasks:
+        file: "{{ playbook_dir }}/tasks/udev.yaml"
+
   handlers:
 
     - name: Reload udev
