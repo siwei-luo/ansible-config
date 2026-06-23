@@ -1,0 +1,13 @@
+---
+- name: Install sudo
+  community.general.pacman:
+    name: sudo
+    state: present
+
+- name: Configure /etc/sudoers
+  ansible.builtin.template:
+    src: "{{ playbook_dir }}/templates/sudo/sudoers.j2"
+    dest: /etc/skel/.vimrc
+    owner: root
+    group: root
+    mode: "0644"

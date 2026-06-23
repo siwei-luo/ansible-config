@@ -65,11 +65,3 @@
     cmd: bootctl install
   when: _bootloader.stat.exists == False
   notify: Reminder root password
-
-- name: Configure /etc/skel/.vimrc
-  ansible.builtin.template:
-    src: "{{ playbook_dir }}/templates/baseline/vimrc.j2"
-    dest: /etc/skel/.vimrc
-    owner: root
-    group: root
-    mode: "0644"

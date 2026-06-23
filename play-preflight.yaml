@@ -18,7 +18,6 @@
           - man-db
           - sof-firmware
           - sudo
-          - vim
           - xfsprogs
         state: present
         root: /mnt

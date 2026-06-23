@@ -10,4 +10,14 @@
       - powertop
       - restic
       - usbutils
+      - vim
       - wol
+    state: present
+
+- name: Configure /etc/skel/.vimrc
+  ansible.builtin.template:
+    src: "{{ playbook_dir }}/templates/tools/vimrc.j2"
+    dest: /etc/skel/.vimrc
+    owner: root
+    group: root
+    mode: "0644"
