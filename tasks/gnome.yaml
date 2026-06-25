@@ -191,3 +191,19 @@
     owner: root
     group: root
     mode: "0644"
+
+- name: Configure /etc/skel/.config/ghostty
+  ansible.builtin.file:
+    path: /etc/skel/.config/ghostty
+    state: directory
+    owner: root
+    group: root
+    mode: "0755"
+
+- name: Configure /etc/skel/.config/ghostty.d/config
+  ansible.builtin.template:
+    src: "{{ playbook_dir }}/templates/gnome/ghostty.j2"
+    dest: /etc/skel/.config/ghostty.d/config
+    owner: root
+    group: root
+    mode: "0644"
