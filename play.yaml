@@ -2,8 +2,6 @@
 - name: Rollout
   hosts: laptops
   become: true
-  vars_files:
-    - defaults.yaml
   tasks:
 
     - name: Update Pacman Cache

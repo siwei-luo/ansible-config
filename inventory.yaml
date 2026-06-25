@@ -3,12 +3,13 @@ laptops:
   hosts:
     aurora:
       ansible_connection: local
+      baseline_execute: true
       hostname: aurora
       intel_use_xe: true
       localtime: Europe/Berlin
-      mkinitcpio_luks: true
       luks_device: nvme0n1
       luks_partition: nvme0n1p2
+      mkinitcpio_luks: true
       mkinitcpio_hooks: >-
         base systemd keyboard sd-vconsole plymouth autodetect microcode modconf kms block sd-encrypt filesystems fsck
       mkinitcpio_kernel_cmdline: >-
@@ -23,12 +24,18 @@ laptops:
         lockdown=integrity
       mkinitcpio_modules: >-
         i915 intel_lpss_pci thunderbolt usbhid xe xhci_pci
-      baseline_execute: true
+
+      secureboot_execute: true
 
   vars:
+    baseline_execute: false
+    gnome_theme_name: Colloid-Dark
+    gnome_theme_force_latest: false
+    intel_use_xe: false
+    mkinitcpio_luks: false
     modprobe_blocklist:
       - pcspkr
-    secureboot_execute: true
+    secureboot_execute: false
     secureboot_files:
       - name: db.crt
         sha1sum: e81d1900fc438338ea12ba8b02b1fcccbc03c90a

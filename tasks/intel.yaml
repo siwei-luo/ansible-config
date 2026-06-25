@@ -62,7 +62,8 @@
   ansible.builtin.shell:
     cmd: lspci -nnd ::03xx
   register: _intel_pci
-  changed_when: False
+  changed_when: false
+  check_mode: false
   when: intel_use_xe
 
 - name: Configure /etc/modprobe.d/intel.conf
@@ -78,4 +79,4 @@
   ansible.builtin.file:
     path: /etc/modprobe.d/intel.conf
     state: absent
-  when: intel_use_xe == False
+  when: intel_use_xe == false
