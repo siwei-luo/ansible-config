@@ -76,6 +76,6 @@
 
 - name: Remove /etc/modprobe.d/intel.conf
   ansible.builtin.file:
-    src: /etc/modprobe.d/intel.conf
+    path: /etc/modprobe.d/intel.conf
     state: absent
   when: intel_use_xe == False

@@ -168,7 +168,6 @@
 
   when: _gnome_theme_location.stat.isdir is not defined or gnome_theme_force_latest
 
-
 - name: Configure /etc/skel/.config/environment.d
   ansible.builtin.file:
     path: /etc/skel/.config/environment.d
