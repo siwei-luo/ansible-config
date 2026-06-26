@@ -35,6 +35,7 @@ laptops:
     mkinitcpio_luks: false
     modprobe_blocklist:
       - pcspkr
+    wireless_regdom: DE
     secureboot_execute: false
     secureboot_files:
       - name: db.crt

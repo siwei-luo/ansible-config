@@ -34,6 +34,15 @@
     group: root
     mode: "0644"
 
+- name: Configure /etc/conf.d/wireless-regdom
+  ansible.builtin.lineinfile:
+    path: /etc/conf.d/wireless-regdom
+    regexp: "^#WIRELESS_REGDOM={{ wireless_regdom | upper | quote }}"
+    line: "WIRELESS_REGDOM={{ wireless_regdom | upper | quote }}"
+    owner: root
+    group: root
+    mode: '0644'
+
 - name: Enable NetworkManager
   ansible.builtin.systemd:
     name: NetworkManager.service
