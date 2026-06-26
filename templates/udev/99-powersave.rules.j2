@@ -1,3 +1,4 @@
+#jinja2: keep_trailing_newline: True
 # PCI
 ACTION=="add", SUBSYSTEM=="pci", TEST=="power/control", ATTR{power/control}="auto"
 
