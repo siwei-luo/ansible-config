@@ -4,6 +4,7 @@
     name:
       - arch-audit
       - bind
+      - go
       - gptfdisk
       - ipcalc
       - lshw
@@ -11,6 +12,7 @@
       - restic
       - usbutils
       - vim
+      - wireguard-tools
       - wol
     state: present
 

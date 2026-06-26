@@ -2,12 +2,17 @@
 - name: Install GNOME
   community.general.pacman:
     name:
+      - adobe-source-code-pro-fonts
+      - adobe-source-han-sans-otc-fonts
+      - adobe-source-sans-fonts
+      - adobe-source-serif-fonts
       - baobab
       - cups
       - easyeffects
       - evolution
       - file-roller
       - firewalld
+      - fprintd
       - gdm
       - ghostty
       - gimp
@@ -27,6 +32,7 @@
       - gnome-user-docs
       - gnome-weather
       - gvfs
+      - hplip
       - loupe
       - nautilus
       - obsidian
@@ -93,6 +99,11 @@
 - name: Enable GDM
   ansible.builtin.systemd:
     name: gdm.service
+    enabled: true
+
+- name: Enable CUPS
+  ansible.builtin.systemd:
+    name: cups.service
     enabled: true
 
 - name: Enable power-profiles-daemon
@@ -207,4 +218,3 @@
     owner: root
     group: root
     mode: "0644"
-    

@@ -37,8 +37,8 @@
 - name: Configure /etc/conf.d/wireless-regdom
   ansible.builtin.lineinfile:
     path: /etc/conf.d/wireless-regdom
-    regexp: "^#WIRELESS_REGDOM={{ wireless_regdom | upper | quote }}"
-    line: "WIRELESS_REGDOM={{ wireless_regdom | upper | quote }}"
+    regexp: '^#WIRELESS_REGDOM="{{ wireless_regdom | upper }}"'
+    line: 'WIRELESS_REGDOM="{{ wireless_regdom | upper }}"'
     owner: root
     group: root
     mode: '0644'
