@@ -24,7 +24,6 @@ laptops:
         lockdown=integrity
       mkinitcpio_modules: >-
         i915 intel_lpss_pci thunderbolt usbhid xe xhci_pci
-
       secureboot_execute: true
 
   vars:
