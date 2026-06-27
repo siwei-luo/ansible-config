@@ -19,3 +19,11 @@
     owner: root
     group: root
     mode: "0644"
+
+- name: Configure /usr/share/psd/browsers/brave
+  ansible.builtin.template:
+    src: "{{ playbook_dir }}/templates/psd/brave.j2"
+    dest: /usr/share/psd/browsers/brave
+    owner: root
+    group: root
+    mode: "0644"
