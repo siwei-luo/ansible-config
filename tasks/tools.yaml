@@ -14,6 +14,8 @@
       - gptfdisk
       - ipcalc
       - lshw
+      - nmap
+      - openbsd-netcat
       - powertop
       - restic
       - usbutils
