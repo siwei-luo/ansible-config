@@ -1,0 +1,16 @@
+---
+- name: Install firewalld
+  community.general.pacman:
+    name: firewalld
+    state: present
+
+- name: Install firewalld Optionals
+  community.general.pacman:
+    name: firewall-config
+    state: present
+    reason: dependency
+
+- name: Enable firewalld
+  ansible.builtin.systemd:
+    name: firewalld.service
+    enabled: true

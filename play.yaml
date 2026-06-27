@@ -80,6 +80,10 @@
       ansible.builtin.include_tasks:
         file: "{{ playbook_dir }}/tasks/psd.yaml"
 
+    - name: Configure firewalld
+      ansible.builtin.include_tasks:
+        file: "{{ playbook_dir }}/tasks/firewalld.yaml"
+
   handlers:
 
     - name: Reload udev
