@@ -61,16 +61,7 @@
       - ttf-mona-sans
       - ttf-nunito
       - ttf-sourcecodepro-nerd
-      - vlc-plugin-dvd
-      - vlc-plugin-ffmpeg
-      - vlc-plugin-freetype
-      - vlc-plugin-gstreamer
-      - vlc-plugin-mad
-      - vlc-plugin-mdns
-      - vlc-plugin-mpeg2
-      - vlc-plugin-samplerate
-      - vlc-plugin-x264
-      - vlc-plugin-x265
+      - vlc
       - wireplumber
       - xdg-desktop-portal-gnome
       - xdg-user-dirs-gtk
@@ -92,6 +83,16 @@
       - lsp-plugins-lv2
       - mda.lv2
       - sassc
+      - vlc-plugin-dvd
+      - vlc-plugin-ffmpeg
+      - vlc-plugin-freetype
+      - vlc-plugin-gstreamer
+      - vlc-plugin-mad
+      - vlc-plugin-mdns
+      - vlc-plugin-mpeg2
+      - vlc-plugin-samplerate
+      - vlc-plugin-x264
+      - vlc-plugin-x265
       - zam-plugins-lv2
     state: present
     reason: dependency
