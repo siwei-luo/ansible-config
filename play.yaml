@@ -84,6 +84,10 @@
       ansible.builtin.include_tasks:
         file: "{{ playbook_dir }}/tasks/firewalld.yaml"
 
+    - name: Configure TeX Live
+      ansible.builtin.include_tasks:
+        file: "{{ playbook_dir }}/tasks/texlive.yaml"
+
   handlers:
 
     - name: Reload udev

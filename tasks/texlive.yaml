@@ -1,0 +1,12 @@
+---
+- name: Install TeX Live
+  community.general.pacman:
+    name:
+      - texlive-basic
+      - texlive-latex
+      - texlive-latexrecommended
+      - texlive-latexextra
+      - texlive-fontsrecommended
+      - texlive-fontsextra
+      - texlive-mathscience
+    state: present
