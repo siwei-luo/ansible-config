@@ -1,4 +1,12 @@
 #jinja2: keep_trailing_newline: True
+autoload -Uz compinit
+compinit
+
+# use arrow keys for completion
+zstyle ':completion:*' menu select
+# privilege escalation
+zstyle ':completion::complete:*' gain-privileges 1
+
 source /usr/share/zsh/plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
@@ -18,4 +26,5 @@ bindkey  "^[[F"   end-of-line
 bindkey  "^[[3~"  delete-char
 bindkey  "^e"     autosuggest-accept
 
+# requires `starship` package installed
 eval "$(starship init zsh)"
