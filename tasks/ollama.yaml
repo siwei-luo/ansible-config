@@ -1,0 +1,16 @@
+---
+- name: Install Ollama
+  community.general.pacman:
+    name: ollama
+    state: present
+
+- name: Install Ollama Optionals
+  community.general.pacman:
+    name: ollama-vulkan
+    state: present
+    reason: dependency
+
+- name: Enable Ollama
+  ansible.builtin.systemd:
+    name: ollama.service
+    enabled: true
