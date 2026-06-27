@@ -1,6 +1,8 @@
 # Created by https://www.toptal.com/developers/gitignore/api/jetbrains,ansible
 # Edit at https://www.toptal.com/developers/gitignore?templates=jetbrains,ansible
 
+debug.yaml
+
 ### Ansible ###
 *.retry
 .vault
