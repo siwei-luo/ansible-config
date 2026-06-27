@@ -2,8 +2,14 @@
 - name: Install Tools
   community.general.pacman:
     name:
+      - alsa-utils
       - arch-audit
       - bind
+      - btrfs-progs
+      - dosfstools
+      - e2fsprogs
+      - exfatprogs
+      - f2fs-tools
       - go
       - gptfdisk
       - ipcalc
