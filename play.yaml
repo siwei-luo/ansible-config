@@ -76,6 +76,10 @@
       ansible.builtin.include_tasks:
         file: "{{ playbook_dir }}/tasks/ollama.yaml"
 
+    - name: Configure psd
+      ansible.builtin.include_tasks:
+        file: "{{ playbook_dir }}/tasks/psd.yaml"
+
   handlers:
 
     - name: Reload udev

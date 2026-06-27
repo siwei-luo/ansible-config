@@ -1,0 +1,21 @@
+---
+- name: Install profile-sync-daemon
+  community.general.pacman:
+    name: profile-sync-daemon
+    state: present
+
+- name: Configure /etc/skel/.config/psd
+  ansible.builtin.file:
+    path: /etc/skel/.config/psd
+    state: directory
+    owner: root
+    group: root
+    mode: "0755"
+
+- name: Configure /etc/skel/.config/psd/psd.conf
+  ansible.builtin.template:
+    src: "{{ playbook_dir }}/templates/psd/psd.conf.j2"
+    dest: /etc/skel/.config/psd/psd.conf
+    owner: root
+    group: root
+    mode: "0644"
