@@ -7,7 +7,7 @@
 - name: Configure /etc/sudoers
   ansible.builtin.template:
     src: "{{ playbook_dir }}/templates/sudo/sudoers.j2"
-    dest: /etc/skel/.vimrc
+    dest: /etc/sudoers
     owner: root
     group: root
-    mode: "0644"
+    mode: "0440"
