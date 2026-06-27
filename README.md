@@ -1,6 +1,7 @@
 # Ansible Configuration Playbooks
 
-Just some (opinionated) Arch Linux configuration.
+Just some (opinionated) Arch Linux configuration. Primarily targets Intel ThinkPads but should work with other
+laptops too.
 
 ## Playbooks
 
