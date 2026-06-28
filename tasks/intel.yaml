@@ -33,6 +33,14 @@
     (thermald_systemd_service_overwrite is defined) and
     (thermald_systemd_service_overwrite | length > 0)
 
+- name: Configure /etc/pacman.d/hooks/60-thermald.hook
+  ansible.builtin.template:
+    src: "{{ playbook_dir }}/templates/intel/thermald.hook.j2"
+    dest: /etc/pacman.d/hooks/60-thermald.hook
+    owner: root
+    group: root
+    mode: "0644"
+
 - name: Enable thermald
   ansible.builtin.systemd:
     name: thermald.service
@@ -42,6 +50,14 @@
   community.general.pacman:
     name: intel-lpmd
     state: present
+
+- name: Configure /etc/pacman.d/hooks/60-lpmd.hook
+  ansible.builtin.template:
+    src: "{{ playbook_dir }}/templates/intel/lpmd.hook.j2"
+    dest: /etc/pacman.d/hooks/60-lpmd.hook
+    owner: root
+    group: root
+    mode: "0644"
 
 - name: Enable intel-lpmd
   ansible.builtin.systemd:

@@ -14,6 +14,10 @@
         file: "{{ playbook_dir }}/tasks/baseline.yaml"
       when: baseline_execute
 
+    - name: Configure pacman
+      ansible.builtin.include_tasks:
+        file: "{{ playbook_dir }}/tasks/pacman.yaml"
+
     - name: Configure modprobe
       ansible.builtin.include_tasks:
         file: "{{ playbook_dir }}/tasks/modprobe.yaml"
@@ -42,10 +46,6 @@
     - name: Configure mkinitcpio
       ansible.builtin.include_tasks:
         file: "{{ playbook_dir }}/tasks/mkinitcpio.yaml"
-
-    - name: Configure pacman
-      ansible.builtin.include_tasks:
-        file: "{{ playbook_dir }}/tasks/pacman.yaml"
 
     - name: Configure systemd
       ansible.builtin.include_tasks:

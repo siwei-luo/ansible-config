@@ -1,0 +1,10 @@
+#jinja2: keep_trailing_newline: True
+[Trigger]
+Type = Package
+Operation = Upgrade
+Target = intel-lpmd
+
+[Action]
+Description = Restart intel_lpmd.service
+When = PostTransaction
+Exec = /usr/bin/sh -c "/usr/bin/systemctl daemon-reload && /usr/bin/systemctl restart intel_lpmd.service"
