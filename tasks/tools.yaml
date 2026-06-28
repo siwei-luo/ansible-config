@@ -19,6 +19,7 @@
       - openbsd-netcat
       - powertop
       - restic
+      - tmux
       - usbutils
       - vim
       - wireguard-tools
@@ -29,6 +30,14 @@
   ansible.builtin.template:
     src: "{{ playbook_dir }}/templates/tools/vimrc.j2"
     dest: /etc/skel/.vimrc
+    owner: root
+    group: root
+    mode: "0644"
+
+- name: Configure /etc/skel/.tmux.conf
+  ansible.builtin.template:
+    src: "{{ playbook_dir }}/templates/tools/tmux.conf.j2"
+    dest: /etc/skel/.tmux.conf
     owner: root
     group: root
     mode: "0644"
