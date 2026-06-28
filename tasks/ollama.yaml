@@ -10,6 +10,14 @@
     state: present
     reason: dependency
 
+- name: Configure /etc/pacman.d/hooks/60-ollama.hook
+  ansible.builtin.template:
+    src: "{{ playbook_dir }}/templates/ollama/ollama.hook.j2"
+    dest: /etc/pacman.d/hooks/60-ollama.hook
+    owner: root
+    group: root
+    mode: "0644"
+
 - name: Enable Ollama
   ansible.builtin.systemd:
     name: ollama.service
