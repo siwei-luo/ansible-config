@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<zone>
+  <short>Internal</short>
+  <description>For use on internal networks. You mostly trust the other computers on the networks to not harm your computer. Only selected incoming connections are accepted.</description>
+{% for service in firewalld_zone_internal_services %}
+  <service name="{{ service }}"/>
+{% endfor %}
+{% for port in firewalld_zone_internal_ports %}
+  <port port="{{ port.number }}" protocol="{{ port.protocol }}"/>
+{% endfor %}
+  <forward/>
+</zone>

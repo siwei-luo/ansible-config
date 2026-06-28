@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<zone>
+  <short>Work</short>
+  <description>For use in work areas. You mostly trust the other computers on networks to not harm your computer. Only selected incoming connections are accepted.</description>
+{% for service in firewalld_zone_work_services %}
+  <service name="{{ service }}"/>
+{% endfor %}
+{% for port in firewalld_zone_work_ports %}
+  <port port="{{ port.number }}" protocol="{{ port.protocol }}"/>
+{% endfor %}
+  <forward/>
+</zone>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<zone>
+  <short>DMZ</short>
+  <description>For computers in your demilitarized zone that are publicly-accessible with limited access to your internal network. Only selected incoming connections are accepted.</description>
+{% for service in firewalld_zone_dmz_services %}
+  <service name="{{ service }}"/>
+{% endfor %}
+{% for port in firewalld_zone_dmz_ports %}
+  <port port="{{ port.number }}" protocol="{{ port.protocol }}"/>
+{% endfor %}
+  <forward/>
+</zone>

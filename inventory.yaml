@@ -28,6 +28,32 @@ laptops:
 
   vars:
     baseline_execute: false
+    firewalld_config_default_zone: public
+    firewalld_zone_dmz_ports: []
+    firewalld_zone_dmz_services: []
+    firewalld_zone_external_ports: []
+    firewalld_zone_external_services: []
+    firewalld_zone_home_ports: []
+    #  - number: 8080
+    #    protocol: tcp
+    firewalld_zone_home_services:
+      - dhcpv6-client
+      - mdns
+      - samba-client
+      - ssh
+
+    firewalld_zone_internal_ports: []
+    firewalld_zone_internal_services:
+      - dhcpv6-client
+      - mdns
+      - samba-client
+      - ssh
+    firewalld_zone_public_ports: []
+    firewalld_zone_public_services:
+      - dhcpv6-client
+    firewalld_zone_work_ports: []
+    firewalld_zone_work_services:
+      - dhcpv6-client
     gnome_theme_name: Colloid-Dark
     gnome_theme_force_latest: false
     intel_use_xe: false

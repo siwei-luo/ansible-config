@@ -10,6 +10,23 @@
     state: present
     reason: dependency
 
+- name: Configure /etc/firewalld/zones
+  ansible.builtin.file:
+    path: /etc/firewalld/zones
+    state: directory
+    owner: root
+    group: root
+    mode: "0755"
+
+- name: Configure /etc/firewalld/zones/*.zones
+  ansible.builtin.template:
+    src: "{{ item }}"
+    dest: "/etc/firewalld/zones/{{ item | basename | regex_replace('\\.j2', '') }}"
+    owner: root
+    group: root
+    mode: "0644"
+  loop: "{{ lookup('fileglob', playbook_dir + '/templates/firewalld/zones/*.xml.j2', wantlist=True) }}"
+
 - name: Enable firewalld
   ansible.builtin.systemd:
     name: firewalld.service
