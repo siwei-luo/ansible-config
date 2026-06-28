@@ -29,7 +29,7 @@
 
 - name: Configure /etc/pacman.d/hooks/60-firewalld.hook
   ansible.builtin.template:
-    src: "{{ playbook_dir }}/templates/intel/firewalld.hook.j2"
+    src: "{{ playbook_dir }}/templates/firewalld/firewalld.hook.j2"
     dest: /etc/pacman.d/hooks/60-firewalld.hook
     owner: root
     group: root
