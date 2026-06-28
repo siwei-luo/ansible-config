@@ -72,6 +72,10 @@
       ansible.builtin.include_tasks:
         file: "{{ playbook_dir }}/tasks/udev.yaml"
 
+    - name: Configure sysctl
+      ansible.builtin.include_tasks:
+        file: "{{ playbook_dir }}/tasks/sysctl.yaml"
+
     - name: Configure Ghostty
       ansible.builtin.include_tasks:
         file: "{{ playbook_dir }}/tasks/ghostty.yaml"
@@ -97,6 +101,10 @@
     - name: Reload udev
       ansible.builtin.shell:
         cmd: udevadm control --reload-rules
+
+    - name: Reload sysctl
+      ansible.builtin.shell:
+        cmd: sysctl --system
 
     - name: Reload systemd
       ansible.builtin.systemd:

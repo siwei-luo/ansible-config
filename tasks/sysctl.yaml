@@ -1,0 +1,10 @@
+---
+- name: SYSCTL template `/etc/sysctl.d/*.conf`
+  ansible.builtin.template:
+    src: "{{ item }}"
+    dest: "/etc/sysctl.d/{{ item | basename | regex_replace('\\.j2', '') }}"
+    owner: root
+    group: root
+    mode: "0644"
+  loop: "{{ lookup('fileglob', playbook_dir + '/templates/sysctl/*.conf.j2', wantlist=True) }}"
+  notify: Reload sysctl
