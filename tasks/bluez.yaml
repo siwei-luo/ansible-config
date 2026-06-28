@@ -10,6 +10,14 @@
     state: present
     reason: dependency
 
+- name: Configure /etc/pacman.d/hooks/60-bluez.hook
+  ansible.builtin.template:
+    src: "{{ playbook_dir }}/templates/bluez/bluez.hook.j2"
+    dest: /etc/pacman.d/hooks/60-bluez.hook
+    owner: root
+    group: root
+    mode: "0644"
+
 - name: Enable Bluez
   ansible.builtin.systemd:
     name: bluetooth.service

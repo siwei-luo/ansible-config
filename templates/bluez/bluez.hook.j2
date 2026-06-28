@@ -1,0 +1,10 @@
+#jinja2: keep_trailing_newline: True
+[Trigger]
+Type = Package
+Operation = Upgrade
+Target = bluez
+
+[Action]
+Description = Restart bluetooth.service
+When = PostTransaction
+Exec = /usr/bin/sh -c "/usr/bin/systemctl daemon-reload && /usr/bin/systemctl restart bluetooth.service"
