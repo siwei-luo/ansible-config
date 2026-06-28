@@ -27,6 +27,14 @@
     mode: "0644"
   loop: "{{ lookup('fileglob', playbook_dir + '/templates/firewalld/zones/*.xml.j2', wantlist=True) }}"
 
+- name: Configure /etc/pacman.d/hooks/60-firewalld.hook
+  ansible.builtin.template:
+    src: "{{ playbook_dir }}/templates/intel/firewalld.hook.j2"
+    dest: /etc/pacman.d/hooks/60-firewalld.hook
+    owner: root
+    group: root
+    mode: "0644"
+
 - name: Enable firewalld
   ansible.builtin.systemd:
     name: firewalld.service
