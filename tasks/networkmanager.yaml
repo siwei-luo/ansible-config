@@ -41,7 +41,7 @@
     line: 'WIRELESS_REGDOM="{{ wireless_regdom | upper }}"'
     owner: root
     group: root
-    mode: '0644'
+    mode: "0644"
 
 - name: Enable NetworkManager
   ansible.builtin.systemd:
