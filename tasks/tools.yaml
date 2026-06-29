@@ -26,10 +26,10 @@
       - wol
     state: present
 
-- name: Configure /etc/skel/.vimrc
+- name: Configure /etc/skel/.config/pikaur.conf
   ansible.builtin.template:
-    src: "{{ playbook_dir }}/templates/tools/vimrc.j2"
-    dest: /etc/skel/.vimrc
+    src: "{{ playbook_dir }}/templates/tools/pikaur.conf.j2"
+    dest: /etc/skel/.config/pikaur.conf
     owner: root
     group: root
     mode: "0644"
@@ -41,3 +41,12 @@
     owner: root
     group: root
     mode: "0644"
+
+- name: Configure /etc/skel/.vimrc
+  ansible.builtin.template:
+    src: "{{ playbook_dir }}/templates/tools/vimrc.j2"
+    dest: /etc/skel/.vimrc
+    owner: root
+    group: root
+    mode: "0644"
+    

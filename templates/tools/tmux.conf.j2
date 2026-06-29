@@ -1,3 +1,4 @@
+#jinja2: keep_trailing_newline: True
 # Make the mouse useful
 set -g mouse on
 bind -T root WheelUpPane   if-shell -F -t = "#{alternate_on}" "send-keys -M" "select-pane -t =; copy-mode -e; send-keys -M"

@@ -4,7 +4,7 @@ laptops:
     aurora:
       ansible_connection: local
       baseline_execute: true
-      hostname: aurora
+      hostname: athena
       intel_use_xe: true
       localtime: Europe/Berlin
       luks_device: nvme0n1
