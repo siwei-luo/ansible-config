@@ -1,12 +1,4 @@
 ---
-- name: Configure /etc/udev/rules.d
-  ansible.builtin.file:
-    path: /etc/udev/rules.d
-    state: directory
-    owner: root
-    group: root
-    mode: "0755"
-
 - name: Configure `/etc/udev/rules.d/*`
   ansible.builtin.template:
     src: "{{ item }}"

@@ -180,14 +180,6 @@
 
   when: _gnome_theme_location.stat.isdir is not defined or gnome_theme_force_latest
 
-- name: Configure /etc/skel/.config/environment.d
-  ansible.builtin.file:
-    path: /etc/skel/.config/environment.d
-    state: directory
-    owner: root
-    group: root
-    mode: "0755"
-
 - name: Configure /etc/skel/.config/environment.d/gcr.conf
   ansible.builtin.template:
     src: "{{ playbook_dir }}/templates/gnome/gcr.conf.j2"

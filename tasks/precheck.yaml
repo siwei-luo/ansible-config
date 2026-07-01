@@ -1,0 +1,40 @@
+---
+- name: Configure /etc/modprobe.d
+  ansible.builtin.file:
+    path: /etc/modprobe.d
+    state: directory
+    owner: root
+    group: root
+    mode: "0755"
+
+- name: Configure /etc/pacman.d/hooks
+  ansible.builtin.file:
+    path: /etc/pacman.d/hooks
+    state: directory
+    owner: root
+    group: root
+    mode: "0755"
+
+- name: Configure /etc/skel/.config
+  ansible.builtin.file:
+    path: /etc/skel/.config
+    state: directory
+    owner: root
+    group: root
+    mode: "0755"
+
+- name: Configure /etc/skel/.config/environment.d
+  ansible.builtin.file:
+    path: /etc/skel/.config/environment.d
+    state: directory
+    owner: root
+    group: root
+    mode: "0755"
+
+- name: Configure /etc/udev/rules.d
+  ansible.builtin.file:
+    path: /etc/udev/rules.d
+    state: directory
+    owner: root
+    group: root
+    mode: "0755"
